@@ -24,3 +24,8 @@ var main = function () {
 }
 
 $(document).ready(main);
+
+
+//TODO: add some kind of paragraph functionality to textarea
+//      add image upload
+//      add archiving
