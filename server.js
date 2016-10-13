@@ -20,7 +20,7 @@ app.get("/nowBlog.json", function (req, res) {
 
 app.post("/nowBlog", function (req, res) {
     nowContent.push(req.body);
-     res.json({"message":"Posted to the server"});
+    res.json({"message":"Posted to the server"});
 });
 
 http.createServer(app).listen(3000);

@@ -1,19 +1,6 @@
 var main = function (nowContent) {
     "use strict";
 
-    var titles, blogs, dates;
-
-    // Seperate the content text received from the server into arrays
-    titles = nowContent.map(function (content) {
-        return content.title;
-    });
-    blogs = nowContent.map(function (content) {
-        return content.blog;
-    });
-    dates = nowContent.map(function (content) {
-        return content.date;
-    });
-
     // Add server's content to .content block
     nowContent.forEach(function (update) {
         $("main .content").prepend($("<p>").text(update.date));
@@ -23,7 +10,7 @@ var main = function (nowContent) {
 
     // Upload button click handler
     $(".button-update input").on("click", function () {
-        //postToServer();
+        postToServer();
         updateNowPage();
     });
 
@@ -36,7 +23,7 @@ var main = function (nowContent) {
             "date" : new Date()
         };
 
-        $.post("now", postContent, function (response) {    // "now" or "/now"?
+        $.post("nowBlog", postContent, function (response) {
             console.log(response);
         });
     };
