@@ -1,10 +1,28 @@
 var main = function () {
     "use strict";
 
-    var updateNowPage = function () {
-        var $blogText = $("<p>").text($("textarea").val()),
-            currentDate = new Date(),
+    var postToServer = function () {
+        var currentDate = new Date(),
             $date = $("<p>").text(currentDate),
+            $blogText = $("<p>").text($("textarea").val()),
+            $title = $("<h2>").text($("input.title").val()),
+            postContent;
+
+        postContent = {
+            "title" : $("input.title").val(),
+            "blogText" : $("textarea").val(),
+            "date" : new Date()
+        };
+
+        $.post("now", postContent, function (response) {    // "now" or "/now"?
+
+        });
+    };
+
+    var updateNowPage = function () {
+        var currentDate = new Date(),
+            $date = $("<p>").text(currentDate),
+            $blogText = $("<p>").text($("textarea").val()),
             $title = $("<h2>").text($("input.title").val());
 
         $("main .content").prepend($date)
@@ -23,7 +41,11 @@ var main = function () {
     });
 }
 
-$(document).ready(main);
+$(document).ready(function () {
+    $.get("now.json", function (nowContent) {
+        main(nowContent);
+    });
+});
 
 
 //TODO: add some kind of paragraph functionality to textarea
