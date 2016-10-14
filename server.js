@@ -11,7 +11,7 @@ var http = require("http"),
         }
     ];
 
-app.use(express.static("./client"));        // ./client or __dirname + /client?
+app.use(express.static("./client"));
 app.use(bodyParser.urlencoded({"extended":"true"}));
 
 app.get("/nowBlog.json", function (req, res) {

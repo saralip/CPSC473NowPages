@@ -1,11 +1,20 @@
 var main = function (nowContent) {
     "use strict";
 
-    // Add server's content to .content block
+    // Add posts stored on server to .content block
     nowContent.forEach(function (update) {
-        $("main .content").prepend($("<p>").text(update.date));
-        $("main .content").prepend($("<p>").text(update.blog));
-        $("main .content").prepend($("<h2>").text(update.title));
+        var $blogPost = $("<div>").addClass("post");
+
+        $blogPost.append($("<h2>").text(update.title));
+        $blogPost.append($("<p>").text(update.blog));
+        $blogPost.append($("<p>").text(update.date));
+
+        $("main .content").prepend($blogPost);
+        
+        // Remove any posts older than the last 5
+        if ($(".post").length > 5) {
+            $("main .content div:nth-child(6)").remove();
+        }
     });
 
     // Upload button click handler
@@ -32,11 +41,18 @@ var main = function (nowContent) {
         var currentDate = new Date(),
             $date = $("<p>").text(currentDate),
             $blogText = $("<p>").text($("textarea").val()),
-            $title = $("<h2>").text($("input.title").val());
+            $title = $("<h2>").text($("input.title").val()),
+            $content = $("<div>").addClass("post");
 
-        $("main .content").prepend($date)
-                          .prepend($blogText)
-                          .prepend($title);
+        $content.append($title)
+                .append($blogText)
+                .append($date);
+
+        $("main .content").prepend($content);
+
+        if ($(".post").length > 5) {
+            $("main .content div:nth-child(6)").remove();
+        }
 
         // Clear input boxes
         $("textarea").val("");
