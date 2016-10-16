@@ -68,7 +68,6 @@ $(document).ready(function () {
 });
 
 
-//TODO: add some kind of paragraph functionality to textarea
-//      add image upload
+//TODO: add image upload
 //      add archiving
 //      store data persistently instead of in memory
