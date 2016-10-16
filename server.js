@@ -5,9 +5,9 @@ var http = require("http"),
     upload,
     nowContent = [
         {
-            "date":"10-11-55",
+            "date":"Thu Oct 13 2016 18:38:43 GMT-0700 (Pacific Daylight Time)",
             "blog":"cruisin down the street in my '64",
-            "title":"Crusin With Robin"
+            "title":"Cruising With Robin"
         }
     ];
 
