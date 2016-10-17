@@ -13,6 +13,10 @@ createHtml.postHtml = function (path, data) {
     });
 }
 
+createHtml.listArchives = function () {
+    return fs.readdirSync("client/archives/");
+}
+
 function buildPostHtml(data) {
     var htmlDoc =
     "<!DOCTYPE html>" +
@@ -20,8 +24,8 @@ function buildPostHtml(data) {
             "<head>" +
                 "<meta charset=\"UTF-8\">" +
                 "<title>Archive</title>" +
-                "<link href=\"stylesheets/style.css\" rel=\"stylesheet\" type=\"text/css\">" +
-                "<link href=\"semantic/dist/semantic.min.css\" rel=\"stylesheet\" type=\"text/css\">" +
+                "<link href=\"../stylesheets/style.css\" rel=\"stylesheet\" type=\"text/css\">" +
+                "<link href=\"../semantic/dist/semantic.min.css\" rel=\"stylesheet\" type=\"text/css\">" +
             "</head>" +
 
             "<body>" +
@@ -77,7 +81,7 @@ function buildPostHtml(data) {
                     "</div>" + 
                 "</footer>" + 
 
-                "<script src=\"semantic/dist/semantic.min.js\"></script>" + 
+                "<script src=\"../semantic/dist/semantic.min.js\"></script>" + 
                 "<script src=\"http://code.jquery.com/jquery-2.0.3.min.js\"></script>" + 
             "</body>" + 
         "</html>";

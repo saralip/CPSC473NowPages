@@ -2,7 +2,6 @@ var http = require("http"),
     express = require("express"),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
-    fs = require("fs"),
     createHtml = require("./createHtml.js"),
     app = express();
 
@@ -55,9 +54,14 @@ app.post("/nowBlog", function (req, res) {
             // Generate new .html file for the archived data
             // Start by changing the date string to file-creation friendly format
             var formattedDate = req.body.date.slice(0, 24).replace(/:/g, "-");
-            var path = "client/" + formattedDate + ".html";
+            var path = "client/archives/" + formattedDate + ".html";
             // Call the createHtml.js module
             createHtml.postHtml(path, req.body);
         }
     });
+});
+
+app.get("/past.json", function (req, res) {
+    // return list of archived file names to client
+    res.json(createHtml.listArchives());
 });
