@@ -2,26 +2,21 @@ var http = require("http"),
     express = require("express"),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
+    fs = require("fs"),
+    createHtml = require("./createHtml.js"),
     app = express();
-    // nowContent = [
-    //     {
-    //         "date":"Thu Oct 13 2016 18:38:43 GMT-0700 (Pacific Daylight Time)",
-    //         "blog":"cruisin down the street in my '64",
-    //         "title":"Cruising With Robin"
-    //     }
-    // ];
 
 app.use(express.static("./client"));
 app.use(bodyParser.urlencoded({"extended":"true"}));
-// connect to now page data store in mongo
-mongoose.connect("mongodb://localhost/nowPage");    // '/now' or something else?
 
+// connect to now page data store in mongo
+mongoose.connect("mongodb://localhost/nowPage");
+// create schema for post objects
 var PostSchema = mongoose.Schema({
     date: String,
     blog: String,
     title: String
 });
-
 var Post = mongoose.model("Post", PostSchema);
 
 http.createServer(app).listen(3000);
@@ -56,6 +51,13 @@ app.post("/nowBlog", function (req, res) {
                 }
                 res.json(result);
             });
+
+            // Generate new .html file for the archived data
+            // Start by changing the date string to file-creation friendly format
+            var formattedDate = req.body.date.slice(0, 24).replace(/:/g, "-");
+            var path = "client/" + formattedDate + ".html";
+            // Call the createHtml.js module
+            createHtml.postHtml(path, req.body);
         }
     });
 });
