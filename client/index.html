@@ -2,27 +2,46 @@
 <html lang="zxx">
 <head>
     <meta charset="UTF-8">
-    <title>Now</title>
-    <link href="semantic/dist/semantic.min.css" rel="stylesheet" type=
-    "text/css">
-    <script src="semantic/dist/semantic.min.js">
-    </script>
+    <title>Now Page Home</title>
+    <link href="semantic/dist/semantic.min.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
     <header class="ui vertical masthead center aligned segment">
-        <h1 class="ui blue header">Now Page Profile</h1>
+        <h1 class="ui blue header">Now Pages</h1>
         <nav>
-            <a href="index.html">Home</a> | <a href="now.html">Now</a> | <a href=
-            "past.html">Past</a>
+            <a href="index.html">Home</a> | <a href="now.html">Now</a> | 
+            <a href="past.html">Past</a>
         </nav>
     </header>
     <main>
         <div class="ui middle aligned center aligned segment">
-            <h2 class="ui blue header">Profile</h2>
-            <img class="ui middle aligned center medium rounded image" src="batman.jpg">
-            <h3 class="ui blue header">Batman</h3>
-            <h4 class="ui blue header">About Me</h4>
-            <h5 class="ui blue header">Current Projects</h5>
+            <h2 class="ui blue header">User List</h2>
+            <div class="users">
+                <ul>
+                    
+                </ul>
+            </div>
+
+            <!-- New now page input area -->
+            <h2 class="ui blue header">New Now Page</h3>
+            <div class="ui input">
+                <!-- Allow only alphanumeric characters of at least length 3 in the username -->
+                <input class="username" id="name" type="text" placeholder="Name" pattern="[A-Za-z0-9]{3,}" required>
+                <input class="title" type="text" placeholder="Now Title">
+                <input type="file" name="displayImage">
+            </div>
+            <div class="ui form">
+                <div class="inline fields ui grid container centered">                   
+                    <div class="field ten wide column ">                        
+                        <textarea class="text" rows="4" placeholder="Enter your 'now' activities..."></textarea>
+                    </div>                    
+                </div>
+                <input class="ui blue submit button create" value="Create!" type="submit">
+            </div>
+            <p class="response"></p>
+            <!-- End new now page input area -->
+
         </div>
     </main>
     <footer>
@@ -54,5 +73,9 @@
             </div>
         </div>
     </footer>
+
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="javascripts/index.js"></script>
 </body>
 </html>
