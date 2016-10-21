@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({"extended":"true"}));
 mongoose.connect("mongodb://localhost/nowPage", function () {
     // To clear user list on home page: delete all folders under /users/
     // To clear database, uncomment line below:
-    mongoose.connection.db.dropDatabase();
+    //mongoose.connection.db.dropDatabase();
 });
 // create schema for storing users and posts
 var UserSchema = mongoose.Schema({
@@ -29,6 +29,7 @@ var UserSchema = mongoose.Schema({
 var User = mongoose.model("User", UserSchema);
 
 http.createServer(app).listen(3000);
+console.log("Server listening on port 3000");
 
 app.get("/users.json", function (req, res) {
     // return list of user .html pages to client
