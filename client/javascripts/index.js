@@ -19,9 +19,9 @@ var main = function (users) {
         newUser = {
             "username": $(".username").val(),
             "post": {
-                "title": $(".title").val(),
-                "blogText": $(".text").val(),
-                "date": new Date()
+                "date": new Date(),
+                "blog": $("textarea").val(),
+                "title": $(".title").val()
             }
         };
 
@@ -29,9 +29,12 @@ var main = function (users) {
             $(".response").text(response.message);
 
             if (response.message === "New user created!") {
-
+                appendUser($(".username").val());
             }
         });
+
+        $("textarea").val("");
+        $(".title").val("");
     });
 
     function appendUser(user) {

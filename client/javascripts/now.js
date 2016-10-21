@@ -27,12 +27,17 @@ var main = function (nowContent) {
         var postContent;
 
         postContent = {
-            "title" : $("input.title").val(),
-            "blogText" : $("textarea").val(),
-            "date" : new Date()
+            "username" : $("h2.name").text(),
+            "post" : {
+                "date" : new Date(),
+                "blog" : $("textarea").val(),
+                "title" : $(".title").val()
+            }
         };
 
-        $.post("nowBlog", postContent, function (response) {
+                console.log("blog: " + postContent.post.blog);
+
+        $.post("../../nowBlog", postContent, function (response) {
             console.log(response);
         });
     };
@@ -41,7 +46,7 @@ var main = function (nowContent) {
         var currentDate = new Date(),
             $date = $("<p>").text(currentDate),
             $blogText = $("<p>").text($("textarea").val()),
-            $title = $("<h2>").text($("input.title").val()),
+            $title = $("<h4>").text($("input.title").val()),
             $content = $("<div>").addClass("post");
 
         $content.append($title)
@@ -62,7 +67,7 @@ var main = function (nowContent) {
 };
 
 $(document).ready(function () {
-    $.get("nowBlog.json", function (nowContent) {
+    $.get("./nowBlog.json", function (nowContent) {
         main(nowContent);
     });
 });

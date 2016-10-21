@@ -11,8 +11,9 @@ app.use(bodyParser.urlencoded({"extended":"true"}));
 
 // connect to now page data store in mongo
 mongoose.connect("mongodb://localhost/nowPage", function () {
-    // DELETE THIS LINE BEFORE SUBMITTING
-    mongoose.connection.db.dropDatabase();
+    // To clear user list on home page: delete all folders under /users/
+    // To clear database, uncomment line below:
+    //mongoose.connection.db.dropDatabase();
 });
 // create schema for post objects
 var PostSchema = mongoose.Schema({
@@ -25,11 +26,13 @@ var Post = mongoose.model("Post", PostSchema);
 // create schema for user objects
 var UserSchema = mongoose.Schema({
     name: String,
-    post: {
-        date: String,
-        blog: String,
-        title: String
-    }
+    posts: [
+        {
+            date: String,
+            blog: String,
+            title: String
+        }
+    ]
 });
 var User = mongoose.model("User", UserSchema);
 
@@ -48,65 +51,60 @@ app.post("/newUser", function (req, res) {
         } else if (count > 0) {  // user already exists
             res.json({"message":"Username already exists"});
         } else { // user doesn't exist, create new user
-            var newUser = new User({"name":req.body.username,
-                                    "post":req.body.post});
+            var newUser = new User();
+
+            newUser.name = req.body.username;
+            newUser.posts.push(req.body.post);
+                                                            console.log("name: " + newUser.name);
+                                                            console.log("posts: " + newUser.posts);
 
             newUser.save(function (err, result) {
                 if (err) {
                     console.log(err);
                     res.json({"message":"Error, try again later"});
-                } else {
-                    // create new user's html page
+                } else { // create new user's html page
                     var path = "client/users/" + req.body.username + "/";
                     createHtml.userHtml(path, req.body);
 
                     res.json({"message":"New user created!"});
-                    // TODO: want to redirect the user to new page
+                    // TODO: want to redirect the user to the new page (res.redirect("path"))
                 }
             });
         }
     });
 });
 
-app.get("/nowBlog.json", function (req, res) {
-    // connect to mongodb to find all the stored posts
-    Post.find({}, function (err, posts) {
-        if (err !== null) {
+app.get("/users/:username/nowBlog.json", function (req, res) {
+    var user = req.path.substring(7, req.path.lastIndexOf("/"));
+
+    User.findOne({"name": user}, function (err, user) {
+        if (err) {
             console.log("ERROR: " + err);
-            return;
+        } else {
+            res.json(user.posts);
         }
-        // send db findings back to client
-        res.json(posts);
     });
 });
 
 app.post("/nowBlog", function (req, res) {
-    // create new post object to store in MongoDB
-    var newPost = new Post({"date":req.body.date,
-                            "blog":req.body.blogText,
-                            "title":req.body.title});
-    // store in MongoDB, send result to client
-    newPost.save(function (err, result) {
-        if (err !== null) {
-            console.log(err);
-            res.send("ERROR");
-        } else {
-            // send all stored Post data to client
-            Post.find({}, function (err, result) {
-                if (err !== null) {
-                    res.send("ERROR");
-                }
-                res.json(result);
-            });
+    User.findOneAndUpdate(
+        {"name": req.body.username},
+        {$push: {"posts": req.body.post}},
+        {safe: true, new: true, upsert: true, sort: { "date": 1}},
+        function (err, model) {
+            if (err) {
+                console.log("Post Error:\n" + err);
+                res.send("ERROR");
+            } else {
+                                                                console.log("NEW MODEL:\n" + model);
+                res.json(model);
 
-            // Generate new .html file for the archived data
-            // Start by changing the date string to file-creation friendly format
-            var formattedDate = req.body.date.slice(0, 24).replace(/:/g, "-");
-            var path = "client/archives/" + formattedDate + ".html";
-            // Call the createHtml.js module to create new page
-            createHtml.postHtml(path, req.body);
+                // Generate new .html file for the archived data
+                var path = "client/users/" + req.body.username + "/archive/";
+                createHtml.postHtml(path, req.body);
+            }
         }
-    });
+    );
 });
 
 app.get("/past.json", function (req, res) {
@@ -115,6 +113,7 @@ app.get("/past.json", function (req, res) {
 });
 
 
-// TODOs: wrap createHtml calls in a try-catch block
+// TODOs: update navigation links in the htmls
+//        wrap createHtml calls in a try-catch block
 //        Delete user ability
-//        update navigation links in the htmls
+//        

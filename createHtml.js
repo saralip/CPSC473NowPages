@@ -2,34 +2,31 @@ var fs = require("fs"),
     createHtml = {};
 
 createHtml.postHtml = function (path, data) {
-    var htmlString = buildPostHtml(data);
-    
-    fs.writeFile(path, htmlString, function (err) {
-        if (err) {
-            console.log("ERROR: " + err);
-        } else {
-            console.log("New archive saved!");
-        }
-    });
+    var formattedDate = data.post.date.slice(0, 24).replace(/:/g, "-");
+
+    writeToDisk(path, formattedDate + ".html", buildPostHtml(data));
 }
 
 createHtml.userHtml = function (path, data) {
-    var htmlString = buildUserHtml(data);
+    writeToDisk(path, "index.html", buildUserHtml(data));
+}
 
+function writeToDisk(path, filename, content) {
     // create path if it doesn't already exist
     if (!fs.existsSync(path)) {
         fs.mkdirSync(path);
     }
 
-    fs.writeFile(path + "index.html", htmlString, function (err) {
+    fs.writeFile(path + filename, content, function (err) {
         if (err) {
             console.log("ERROR: " + err);
         } else {
-            console.log("New user created!");
+            console.log(filename + " created!");
         }
     });
 }
 
+// A single post html for the archives page
 function buildPostHtml(data) {
     var htmlDoc =
     "<!DOCTYPE html>" +
@@ -54,9 +51,9 @@ function buildPostHtml(data) {
                     "<div class=\"ui middle aligned center aligned segment\">" +
                         //<img class=\"ui middle aligned center medium rounded image\" src=\"driving.gif\">
                         "<div class=\"content\">" +
-                            // ADD DATA HERE
+                            // Data
                             "<div class=\"post\">" +
-                                "<h2>" + data.title + "</h2>" +
+                                "<h4>" + data.title + "</h4>" +
                                 "<p>" + data.blogText + "</p>" +
                                 "<p>" + data.date + "</p>" +
                             "</div>" +
@@ -101,6 +98,7 @@ function buildPostHtml(data) {
     return htmlDoc;
 }    
 
+// A new user page html
 function buildUserHtml(data) {
     var htmlDoc =
     "<!DOCTYPE html>" +
@@ -116,17 +114,17 @@ function buildUserHtml(data) {
             "<header class=\"ui vertical masthead center aligned segment\">" +
                 "<h1 class=\"ui blue header\">NOW!</h1>" +
                 "<nav>" +
-                    "<a href=\"index.html\">Home</a> | <a href=\"now.html\">Now</a> + |" +
+                    "<a href=\"../../\">Home</a> | <a href=\"now.html\">Now</a> |" +
                     "<a href=\"past.html\">Past</a>" +
                 "</nav>" +
             "</header>" +
 
             "<main>" +
                 "<div class=\"ui middle aligned center aligned segment\">" +
-                    "<img class=\"ui middle aligned center medium rounded image\" src=\"driving.gif\">" +
+                    "<h2 class=\"name\">" + data.username + "</h2>" +
                     "<div class=\"content\">" +
                     "</div>" +
-                    "<h2 class=\"ui blue header\">New Post</h3>" +
+                    "<h3 class=\"ui blue header\">New Post</h3>" +
                     "<div class=\"ui input\">" +
                         "<input class=\"title\" type=\"text\" placeholder=\"Title\">" +
                         "<input type=\"file\" name=\"displayImage\">" +
