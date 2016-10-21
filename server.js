@@ -13,17 +13,9 @@ app.use(bodyParser.urlencoded({"extended":"true"}));
 mongoose.connect("mongodb://localhost/nowPage", function () {
     // To clear user list on home page: delete all folders under /users/
     // To clear database, uncomment line below:
-    //mongoose.connection.db.dropDatabase();
+    mongoose.connection.db.dropDatabase();
 });
-// create schema for post objects
-var PostSchema = mongoose.Schema({
-    date: String,
-    blog: String,
-    title: String
-});
-var Post = mongoose.model("Post", PostSchema);
-
-// create schema for user objects
+// create schema for storing users and posts
 var UserSchema = mongoose.Schema({
     name: String,
     posts: [
@@ -62,9 +54,10 @@ app.post("/newUser", function (req, res) {
                 if (err) {
                     console.log(err);
                     res.json({"message":"Error, try again later"});
-                } else { // create new user's html page
+                } else { // create new user's html page an archive of its post
                     var path = "client/users/" + req.body.username + "/";
                     createHtml.userHtml(path, req.body);
+                    createHtml.postHtml(path + "archive/", req.body);
 
                     res.json({"message":"New user created!"});
                     // TODO: want to redirect the user to the new page (res.redirect("path"))
@@ -75,9 +68,7 @@ app.post("/newUser", function (req, res) {
 });
 
 app.get("/users/:username/nowBlog.json", function (req, res) {
-    var user = req.path.substring(7, req.path.lastIndexOf("/"));
-
-    User.findOne({"name": user}, function (err, user) {
+    User.findOne({"name": req.params.username}, function (err, user) {
         if (err) {
             console.log("ERROR: " + err);
         } else {
@@ -107,9 +98,9 @@ app.post("/nowBlog", function (req, res) {
     );
 });
 
-app.get("/past.json", function (req, res) {
+app.get("/users/:username/archive/past.json", function (req, res) {
     // return list of archived file names to client
-    res.json(fs.readdirSync("client/archives/"));
+    res.json(fs.readdirSync("client/users/" + req.params.username + "/archive/"));
 });
 
 

@@ -9,6 +9,7 @@ createHtml.postHtml = function (path, data) {
 
 createHtml.userHtml = function (path, data) {
     writeToDisk(path, "index.html", buildUserHtml(data));
+    writeToDisk(path + "archive/", "index.html", buildAchriveHtml());
 }
 
 function writeToDisk(path, filename, content) {
@@ -34,16 +35,15 @@ function buildPostHtml(data) {
             "<head>" +
                 "<meta charset=\"UTF-8\">" +
                 "<title>Archive</title>" +
-                "<link href=\"../stylesheets/style.css\" rel=\"stylesheet\" type=\"text/css\">" +
-                "<link href=\"../semantic/dist/semantic.min.css\" rel=\"stylesheet\" type=\"text/css\">" +
+                "<link href=\"../../../stylesheets/style.css\" rel=\"stylesheet\" type=\"text/css\">" +
+                "<link href=\"../../../semantic/dist/semantic.min.css\" rel=\"stylesheet\" type=\"text/css\">" +
             "</head>" +
 
             "<body>" +
                 "<header class=\"ui vertical masthead center aligned segment\">" +
                     "<h1 class=\"ui blue header\">NOW!</h1>" +
                     "<nav>" +
-                        "<a href=\"index.html\">Home</a> | <a href=\"now.html\">Now</a> | <a href=" +   ///////////Change links
-                        "\"past.html\">Past</a>" +
+                        "<a href=\"../../../\">Home</a> | <a href=\"../\">Now</a> | <a href=\"/\">Past</a>" +
                     "</nav>" +
                 "</header>" +
 
@@ -53,9 +53,9 @@ function buildPostHtml(data) {
                         "<div class=\"content\">" +
                             // Data
                             "<div class=\"post\">" +
-                                "<h4>" + data.title + "</h4>" +
-                                "<p>" + data.blogText + "</p>" +
-                                "<p>" + data.date + "</p>" +
+                                "<h4>" + data.post.title + "</h4>" +
+                                "<p>" + data.post.blog + "</p>" +
+                                "<p>" + data.post.date + "</p>" +
                             "</div>" +
                             // End
                         "</div>" +
@@ -78,7 +78,7 @@ function buildPostHtml(data) {
                                         "<h5>Sitemap</h5>" + 
                                         "<ul>" + 
                                             "<li>" + 
-                                                "<a href=\"index.html\">Home</a>" + 
+                                                "<a href=\"../../../\">Home</a>" + 
                                             "</li>" + 
                                             "<li>" + 
                                                 "<a href=\"#\">About Us</a>" + 
@@ -91,7 +91,7 @@ function buildPostHtml(data) {
                     "</div>" + 
                 "</footer>" + 
 
-                "<script src=\"../semantic/dist/semantic.min.js\"></script>" + 
+                "<script src=\"../../../semantic/dist/semantic.min.js\"></script>" + 
                 "<script src=\"http://code.jquery.com/jquery-2.0.3.min.js\"></script>" + 
             "</body>" + 
         "</html>";
@@ -114,8 +114,8 @@ function buildUserHtml(data) {
             "<header class=\"ui vertical masthead center aligned segment\">" +
                 "<h1 class=\"ui blue header\">NOW!</h1>" +
                 "<nav>" +
-                    "<a href=\"../../\">Home</a> | <a href=\"now.html\">Now</a> |" +
-                    "<a href=\"past.html\">Past</a>" +
+                    "<a href=\"../../\">Home</a> | <a href=\"/\">Now</a> |" +
+                    "<a href=\"archive/\">Archives</a>" +
                 "</nav>" +
             "</header>" +
 
@@ -179,6 +179,71 @@ function buildUserHtml(data) {
             "<script src=\"../../javascripts/now.js\">" +"</script>" +
         "</body>" +
     "</html>"
+
+    return htmlDoc;
+}
+
+// A new archive page
+function buildAchriveHtml() {
+    var htmlDoc =
+    "<!DOCTYPE html>" +
+    "<html lang=\"zxx\">" +
+    "<head>" +
+        "<meta charset=\"UTF-8\">" + 
+        "<title>Now Archive</title>" +
+        "<link href=\"../../../semantic/dist/semantic.min.css\" rel=\"stylesheet\" type=\"text/css\">" +
+    "</head>" +
+    "<body>" +
+        "<header class=\"ui vertical masthead center aligned segment\">" +
+            "<h1 class=\"ui blue header\">Past</h1>" +
+            "<nav>" +
+                "<a href=\"../../../\">Home</a> | <a href=\"../\">Now</a> | " +
+                "<a href=\"/\">Past</a>" +
+            "</nav>" +
+        "</header>" +
+        "<main>" +
+            "<div class=\"ui middle aligned center aligned segment\">" +
+                "<h2 class=\"ui blue header\">Past Posts</h2>" +
+                "<div class=\"past-posts\">" +
+                    "<ul>" +
+                        
+                    "</ul>" +
+                "</div>" +
+            "</div>" +
+        "</main>" +
+        "<footer>" +
+            "<div class=\"ui vertical footer segment\">" +
+                "<div class=\"ui container\">" +
+                    "<div class=\"ui center aligned stackable divided equal height stackable grid\">" +
+                    "<div class=\"three wide column\">" +
+                            "<div class=\"contact\">" +
+                                "<h5>Contact U</h5>" +
+                                "<p>BATMAN Street</p>" +
+                                "<p>BATMAN CAVE</p>" +
+                            "</div>" +
+                        "</div>" +
+                        "<div class=\"three wide column\">" +
+                            "<div class=\"sitemap\">" +
+                                "<h5>Sitemap</h5>" +
+                                "<ul>" +
+                                    "<li>" +
+                                        "<a href=\"now.html\">Now</a>" +
+                                    "</li>" +
+                                    "<li>" +
+                                        "<a href=\"#\">About Us</a>" +
+                                    "</li>" +
+                                "</ul>" +
+                            "</div>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>" +
+            "</div>" +
+        "</footer>" +
+        "<script src=\"http://code.jquery.com/jquery-2.0.3.min.js\">" +"</script>" +
+        "<script src=\"../../../javascripts/past.js\">" +"</script>" +
+        "<script src=\"../../../semantic/dist/semantic.min.js\">" +"</script>" +
+    "</body>" +
+    "</html>";
 
     return htmlDoc;
 }

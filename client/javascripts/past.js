@@ -6,7 +6,7 @@ var main = function (archiveFileNames) {
 
         $("<a>", {
             text: archive,
-            href: "archives/" + archive,
+            href: archive,
         }).appendTo($listItem);
 
         $(".past-posts").append($listItem);
@@ -14,7 +14,7 @@ var main = function (archiveFileNames) {
 };
 
 $(document).ready(function () {
-    $.getJSON("past.json", function (archiveFileNames) {
+    $.getJSON("./past.json", function (archiveFileNames) {
         main(archiveFileNames);
     });
 });
