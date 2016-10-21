@@ -48,8 +48,6 @@ app.post("/newUser", function (req, res) {
 
             newUser.name = req.body.username;
             newUser.posts.push(req.body.post);
-                                                            console.log("name: " + newUser.name);
-                                                            console.log("posts: " + newUser.posts);
 
             newUser.save(function (err, result) {
                 if (err) {
@@ -88,7 +86,6 @@ app.post("/nowBlog", function (req, res) {
                 console.log("Post Error:\n" + err);
                 res.send("ERROR");
             } else {
-                                                                console.log("NEW MODEL:\n" + model);
                 res.json(model);
 
                 // Generate new .html file for the archived data
@@ -106,6 +103,9 @@ app.get("/users/:username/archive/past.json", function (req, res) {
 
 
 // TODOs: update navigation links in the htmls
-//        wrap createHtml calls in a try-catch block
+//        Upload images!
 //        Delete user ability
-//        
+//        wrap createHtml calls in a try-catch block
+//        remove index.html from archives page
+//        fix navigation link in archived pages
+    
