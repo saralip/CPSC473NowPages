@@ -7,7 +7,9 @@ var http = require("http"),
     app = express();
 
 app.use(express.static("./client"));
-app.use(bodyParser.urlencoded({"extended":"true"}));
+// set upload/dl limits to 5mb
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", "extended":"true"}));
 
 // connect to now page data store in mongo
 mongoose.connect("mongodb://localhost/nowPage", function () {
@@ -22,7 +24,8 @@ var UserSchema = mongoose.Schema({
         {
             date: String,
             blog: String,
-            title: String
+            title: String,
+            image: String
         }
     ]
 });
@@ -53,7 +56,7 @@ app.post("/newUser", function (req, res) {
                 if (err) {
                     console.log(err);
                     res.json({"message":"Error, try again later"});
-                } else { // create new user's html page an archive of its post
+                } else { // create new user's html page and archive
                     var path = "client/users/" + req.body.username + "/";
                     createHtml.userHtml(path, req.body);
                     createHtml.postHtml(path + "archive/", req.body);

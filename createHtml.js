@@ -20,9 +20,7 @@ function writeToDisk(path, filename, content) {
 
     fs.writeFile(path + filename, content, function (err) {
         if (err) {
-            console.log("ERROR: " + err);
-        } else {
-            console.log(filename + " created!");
+            console.log("Error writing to file: \n" + err);
         }
     });
 }
@@ -54,6 +52,7 @@ function buildPostHtml(data) {
                             // Data
                             "<div class=\"post\">" +
                                 "<h4>" + data.post.title + "</h4>" +
+                                "<img src=\"" + data.post.image + "\">" +
                                 "<p>" + data.post.blog + "</p>" +
                                 "<p>" + data.post.date + "</p>" +
                             "</div>" +
@@ -127,7 +126,7 @@ function buildUserHtml(data) {
                     "<h3 class=\"ui blue header\">New Post</h3>" +
                     "<div class=\"ui input\">" +
                         "<input class=\"title\" type=\"text\" placeholder=\"Title\">" +
-                        "<input type=\"file\" name=\"displayImage\">" +
+                        "<input type=\"file\" id=\"file-image\">" +
                     "</div>" +
                     "<div class=\"ui form\">" +
                         "<div class=\"inline fields ui grid container centered\">" +                   
