@@ -4,7 +4,9 @@ var main = function (users) {
 
     // Display users in the user list view
     users.forEach(function (user) {
-        appendUser(user);
+        if (user !== ".DS_Store") {
+            appendUser(user);
+        }
     });
 
     // Button handler--post to server
