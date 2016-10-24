@@ -2,6 +2,10 @@ var main = function (archiveFileNames) {
     "use strict";
 
     archiveFileNames.forEach(function (archive) {
+        if (archive === "index.html") {
+            return;
+        }
+        
         var $listItem = $("<li>");
 
         $("<a>", {
