@@ -41,7 +41,7 @@ function buildPostHtml(data) {
                 "<header class=\"ui vertical masthead center aligned segment\">" +
                     "<h1 class=\"ui blue header\">NOW!</h1>" +
                     "<nav>" +
-                        "<a href=\"../../../\">Home</a> | <a href=\"../\">Now</a> | <a href=\"/\">Past</a>" +
+                        "<a href=\"../../../\">Home</a> | <a href=\"../\">Now</a> | <a href=\"/users/" + data.username + "/archive/\">Past</a>" +
                     "</nav>" +
                 "</header>" +
 
@@ -113,7 +113,7 @@ function buildUserHtml(data) {
             "<header class=\"ui vertical masthead center aligned segment\">" +
                 "<h1 class=\"ui blue header\">NOW!</h1>" +
                 "<nav>" +
-                    "<a href=\"../../\">Home</a> | <a href=\"/\">Now</a> |" +
+                    "<a href=\"../../\">Home</a> | <a href=\"/\">Now</a> | " +
                     "<a href=\"archive/\">Archives</a>" +
                 "</nav>" +
             "</header>" +
