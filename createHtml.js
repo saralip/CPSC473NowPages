@@ -134,11 +134,8 @@ function buildUserHtml(data) {
                                 "<textarea rows=\"4\" placeholder=\"Enter Your Post's Description Here...\">" +"</textarea>" +
                             "</div>" +                    
                         "</div>" +
-                        "<div class=\"button-archive\">" +
-                            "<input class=\"ui blue submit button\" value=\"Update &amp; Archive!\" type=\"submit\">" +
-                        "</div>" +
                         "<div class=\"button-update\">" +
-                            "<input class=\"ui blue submit button\" value=\"Update Only!\" type=\"submit\">" +
+                            "<input class=\"ui blue submit button\" value=\"Update\" type=\"submit\">" +
                         "</div>" +
                     "</div>" +
                 "</div>" +
