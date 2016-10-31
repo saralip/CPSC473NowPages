@@ -8,5 +8,6 @@
     "express": "4.14.x",
     "body-parser": "1.15.x",
     "mongoose": "4.6.x",
+    "jshint": "2.9.x"
   }
 }
