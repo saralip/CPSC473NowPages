@@ -11,9 +11,10 @@ app.use(express.static('./client'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', 'extended':'true'}));
 
-// connect to now page data store in mongo
+// connect to mlab database for MongoDB storage
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/nowPage', function () {
+var uri = 'mongodb://misha:473project1@ds135797.mlab.com:35797/473-project1';
+mongoose.connect(uri, function () {
     // To clear user list on home page: delete all folders under /users/
     // To clear database, uncomment line below:
     //mongoose.connection.db.dropDatabase();
@@ -111,5 +112,4 @@ app.get('/users/:username/archive/past.json', function (req, res) {
 
 
 // TODOs: Delete user ability
-//        wrap createHtml calls in a try-catch block
     

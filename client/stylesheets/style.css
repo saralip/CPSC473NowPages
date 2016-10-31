@@ -37,12 +37,18 @@ main {
   color: blue;
 }
 
+.post {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.post p {
+  white-space: pre-line;
+}
+
 li {
   list-style-type: none;
-}
- 
-main .content {
-  white-space: pre;
 }
 
 input {
