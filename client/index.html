@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Now Page Home</title>
     <link href="semantic/dist/semantic.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Sans%7CUbuntu">
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -14,32 +16,46 @@
         <div class="ui middle aligned center aligned segment">
             <h2 class="ui blue header">User List</h2>
             <div class="users">
-                <ul>
-                    
-                </ul>
-            </div>
-
-            <!-- New now page input area -->
-            <h2 class="ui blue header">New Now Page</h3>
-            <div class="ui input">
-                <!-- Allow only alphanumeric characters of at least length 3 in the username -->
-                <input class="username" id="name" type="text" placeholder="Name" pattern="[A-Za-z0-9]{3,}" required>
-                <input class="title" type="text" placeholder="Now Title">
-                <input type="file" id="file-image">
-            </div>
-            <div class="ui form">
-                <div class="inline fields ui grid container centered">                   
-                    <div class="field ten wide column ">                        
-                        <textarea class="text" rows="4" placeholder="Enter your 'now' activities..."></textarea>
-                    </div>                    
+                <ul class="ui center aligned segment" style="list-style: none;"></ul>
+            </div><!-- New now page input area -->
+            <h2 class="ui blue header">New Now Page</h2>
+            <div class="ui center aligned grid container mod-login-page">
+                <div class="six wide mobile column"></div>
+                <div class="centered divided row">
+                    <div class="eight wide mobile column mod-login-widget">
+                        <form class="ui form">
+                            <div class="field">
+                                <!-- Allow only alphanumeric characters of at least length 3 in the username-->
+                                <input class="username" id="name" pattern=
+                                "[A-Za-z0-9]{3,}" placeholder="Name" required=
+                                "" type="text">
+                            </div>
+                            <div class="field">
+                                <input class="title" placeholder="Now Title"
+                                type="text">
+                            </div>
+                            <div class="field">
+                                <input id="file-image" type="file">
+                            </div>
+                            <div class="field">
+                                <textarea class="text" placeholder=
+                                "Enter your 'now' activities..." rows=
+                                "4"></textarea>
+                            </div>
+                            <div class="field">
+                                <input class="ui fluid primary button create" type=
+                                "submit" value="Create!">
+                            </div>
+                            <div class="ui hidden divider"></div>
+                        </form>
+                        <p class="response"></p>
+                        <!-- End new now page input area -->
+                    </div>
                 </div>
-                <input class="ui blue submit button create" value="Create!" type="submit">
             </div>
-            <p class="response"></p>
-            <!-- End new now page input area -->
-
         </div>
     </main>
+
     <footer>
         <div class="ui vertical footer segment">
             <div class="ui container">
@@ -50,19 +66,6 @@
                             <h5>Contact Us</h5>
                             <p>BATMAN Street</p>
                             <p>BATMAN CAVE</p>
-                        </div>
-                    </div>
-                    <div class="three wide column">
-                        <div class="sitemap">
-                            <h5>Sitemap</h5>
-                            <ul>
-                                <li>
-                                    <a href="now.html">Home</a>
-                                </li>
-                                <li>
-                                    <a href="#">About Us</a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
