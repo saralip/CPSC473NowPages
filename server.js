@@ -39,7 +39,13 @@ console.log('Server listening on port 3000');
 app.get('/users.json', function (req, res) {
     'use strict';
     // return list of user .html pages to client
-    res.json(fs.readdirSync('client/users/'));
+    fs.readdir('client/users/', function (err, userlist) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(userlist);
+        }
+    });
 });
 
 // create new user if one doesn't already exist
@@ -107,7 +113,14 @@ app.post('/nowBlog', function (req, res) {
 app.get('/users/:username/archive/past.json', function (req, res) {
     'use strict';
     // return list of archived file names to client
-    res.json(fs.readdirSync('client/users/' + req.params.username + '/archive/'));
+    var users = fs.readdir('client/users/' + req.params.username + 
+                           '/archive/', function (err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(users);
+        }
+    });
 });
 
 
