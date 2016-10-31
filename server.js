@@ -36,9 +36,9 @@ var User = mongoose.model('User', UserSchema);
 http.createServer(app).listen(3000);
 console.log('Server listening on port 3000');
 
+// return list of user .html pages to client
 app.get('/users.json', function (req, res) {
     'use strict';
-    // return list of user .html pages to client
     fs.readdir('client/users/', function (err, userlist) {
         if (err) {
             console.log(err);
@@ -78,6 +78,7 @@ app.post('/newUser', function (req, res) {
     });
 });
 
+// returns list of posts created by requesting user
 app.get('/users/:username/nowBlog.json', function (req, res) {
     'use strict';
     User.findOne({'name': req.params.username}, function (err, user) {
@@ -89,6 +90,7 @@ app.get('/users/:username/nowBlog.json', function (req, res) {
     });
 });
 
+// user adds a new post -- store in database
 app.post('/nowBlog', function (req, res) {
     'use strict';
     User.findOneAndUpdate(
@@ -110,6 +112,7 @@ app.post('/nowBlog', function (req, res) {
     );
 });
 
+// returns list of links to a user's archive history
 app.get('/users/:username/archive/past.json', function (req, res) {
     'use strict';
     // return list of archived file names to client
