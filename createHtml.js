@@ -72,19 +72,6 @@ function buildPostHtml(data) {
                                         "<p>BATMAN CAVE</p>" + 
                                     "</div>" + 
                                 "</div>" + 
-                                "<div class=\"three wide column\">" + 
-                                    "<div class=\"sitemap\">" + 
-                                        "<h5>Sitemap</h5>" + 
-                                        "<ul>" + 
-                                            "<li>" + 
-                                                "<a href=\"../../../\">Home</a>" + 
-                                            "</li>" + 
-                                            "<li>" + 
-                                                "<a href=\"#\">About Us</a>" + 
-                                            "</li>" + 
-                                        "</ul>" + 
-                                    "</div>" + 
-                                "</div>" + 
                             "</div>" + 
                         "</div>" + 
                     "</div>" + 
@@ -120,7 +107,7 @@ function buildUserHtml(data) {
 
             "<main>" +
                 "<div class=\"ui middle aligned center aligned segment\">" +
-                    "<h2 class=\"name\">" + data.username + "</h2>" +
+                    "<h2 id=\"user-header\" class=\"name\">" + data.username + "</h2>" +
                     "<div class=\"content\">" +
                     "</div>" +
                     "<h3 class=\"ui blue header\">New Post</h3>" +
@@ -152,19 +139,6 @@ function buildUserHtml(data) {
                                     "<p>BATMAN CAVE</p>" +
                                 "</div>" +
                             "</div>" +
-                            "<div class=\"three wide column\">" +
-                                "<div class=\"sitemap\">" +
-                                    "<h5>Sitemap</h5>" +
-                                    "<ul>" +
-                                        "<li>" +
-                                            "<a href=\"now.html\">Now</a>" +
-                                        "</li>" +
-                                        "<li>" +
-                                            "<a href=\"#\">About Us</a>" +
-                                        "</li>" +
-                                    "</ul>" +
-                                "</div>" +
-                            "</div>" +
                         "</div>" +
                     "</div>" +
                 "</div>" +
@@ -188,6 +162,7 @@ function buildAchriveHtml() {
         "<meta charset=\"UTF-8\">" + 
         "<title>Now Archive</title>" +
         "<link href=\"../../../semantic/dist/semantic.min.css\" rel=\"stylesheet\" type=\"text/css\">" +
+        "<link href=\"../../../stylesheets/style.css\" rel=\"stylesheet\" type=\"text/css\">" +
     "</head>" +
     "<body>" +
         "<header class=\"ui vertical masthead center aligned segment\">" +
@@ -216,19 +191,6 @@ function buildAchriveHtml() {
                                 "<h5>Contact U</h5>" +
                                 "<p>BATMAN Street</p>" +
                                 "<p>BATMAN CAVE</p>" +
-                            "</div>" +
-                        "</div>" +
-                        "<div class=\"three wide column\">" +
-                            "<div class=\"sitemap\">" +
-                                "<h5>Sitemap</h5>" +
-                                "<ul>" +
-                                    "<li>" +
-                                        "<a href=\"now.html\">Now</a>" +
-                                    "</li>" +
-                                    "<li>" +
-                                        "<a href=\"#\">About Us</a>" +
-                                    "</li>" +
-                                "</ul>" +
                             "</div>" +
                         "</div>" +
                     "</div>" +
