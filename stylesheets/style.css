@@ -1,0 +1,77 @@
+
+ 
+header {
+  background: white;
+  overflow: auto;
+}
+ 
+header h1 { 
+  float: left;
+  width: 570px;
+}
+ 
+header nav {
+  float: right;
+  width: 285px;
+  display: inline;
+  padding: 0px 10px 0px 10px;
+}
+ 
+main {
+  background: white;
+  overflow: auto;
+  padding: 20px;
+}
+ 
+main .content {
+  white-space: pre;
+}
+
+footer .left {
+ 
+  float: left;
+  width: 570px;
+}
+ 
+footer .sitemap {
+  float: right;
+  width: 285px;
+}
+
+body {
+      text-align: center;
+      background: url("https://pixabay.com/static/uploads/photo/2015/04/23/21/59/above-736879_960_720.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      font-family: helvetica;
+}
+
+ header h1 {
+  font-family: 'Londrina Shadow', cursive;
+  font-size: 75px;
+  color: blue;
+  margin: 60px 0 0 0;
+
+}
+
+.contact {
+display:block;
+
+}
+
+.sitemap{
+display:block;
+
+}
+
+@media (max-width: 500px) {
+ header h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+
+
+}
+ 

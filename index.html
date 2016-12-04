@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <title>Now Page Home</title>
+    <link href="semantic/dist/semantic.min.css" rel="stylesheet" type=
+    "text/css">
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
+   
+</head>
+<body>
+    <header class="">
+        <h1 class="">Now Pages</h1>
+    </header>
+    <main>
+        <div class="ui middle aligned center aligned segment">
+            <h2 class="ui blue header">User List</h2>
+            <div class="users">
+                <ul></ul>
+            </div><!-- New now page input area -->
+            <h2 class="ui blue header">New Now Page</h2>
+            <div class="ui center aligned grid container mod-login-page">
+                <div class="six wide mobile column"></div>
+                <div class="centered divided row">
+                    <div class="eight wide mobile column mod-login-widget">
+                        <form class="ui form">
+                            <div class="field">
+                                <!-- Allow only alphanumeric characters of at least length 3 in the username-->
+                                <input class="username" id="name" pattern=
+                                "[A-Za-z0-9]{3,}" placeholder="Name" required=
+                                "" type="text">
+                            </div>
+                            <div class="field">
+                                <input class="title" placeholder="Now Title"
+                                type="text">
+                            </div>
+                            <div class="field">
+                                <input id="file-image" type="file">
+                            </div>
+                            <div class="field">
+                                <textarea class="text" placeholder=
+                                "Enter your 'now' activities..." rows=
+                                "4"></textarea>
+                            </div>
+                            <div class="field">
+                                <input class="ui fluid primary button create" type=
+                                "submit" value="Create!">
+                            </div>
+                            <div class="ui hidden divider"></div>
+                        </form>
+                        <p class="response"></p>
+                        <!-- End new now page input area -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="ui vertical footer segment">
+            <div class="ui container">
+                <div class=
+                "ui center aligned stackable divided equal height stackable grid">
+                <div class="three wide column">
+                        <div class="contact">
+                            <h5>Contact Us</h5>
+                            <p>BATMAN Street</p>
+                            <p>BATMAN CAVE</p>
+                        </div>
+                    </div>
+                    <div class="three wide column">
+                        <div class="sitemap">
+                            <h5>Sitemap</h5>
+                            <ul>
+                                <li>
+                                    <a href="now.html">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#">About Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="semantic/dist/semantic.min.js">
+    </script> 
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js">
+    </script> 
+    <script src="javascripts/index.js">
+    </script>
+</body>
+</html>
